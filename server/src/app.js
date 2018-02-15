@@ -20,7 +20,6 @@ app.get('/posts', (req, res) => {
 			posts: posts
 		})
 	}).sort({_id:-1})
-<<<<<<< HEAD
 })
 
 app.post('/add_post', (req, res) => {
@@ -67,65 +66,6 @@ app.delete('/posts/:id', (req, res) => {
 	}, function(err, post){
 		if (err)
 			res.send(err)
-=======
-})
-
-app.post('/add_post', (req, res) => {
-	var db = req.db;
-	var title = req.body.title;
-	var description = req.body.description;
-	var new_post = new Post({
-		title: title,
-		description: description
-	})
-
-	new_post.save(function (error) {
-		if (error) {
-			console.log(error)
-		}
->>>>>>> 573250f1b5048d92c848a02f3b24dc105c5a3ab3
-		res.send({
-			success: true
-		})
-	})
-})
-
-<<<<<<< HEAD
-app.get('/post/:id', (req, res) => {
-	var db = req.db;
-	Post.findById(req.params.id, 'title description', function (error, post) {
-	  if (error) { console.error(error); }
-	  res.send(post)
-	})
-})
-
-app.listen(process.env.PORT || 8081)
-=======
-app.put('/posts/:id', (req, res) => {
-	var db = req.db;
-	Post.findById(req.params.id, 'title description', function (error, post) {
-	  if (error) { console.error(error); }
-
-	  post.title = req.body.title
-	  post.description = req.body.description
-	  post.save(function (error) {
-			if (error) {
-				console.log(error)
-			}
-			res.send({
-				success: true
-			})
-		})
-	})
-})
-
-app.delete('/posts/:id', (req, res) => {
-	var db = req.db;
-	Post.remove({
-		_id: req.params.id
-	}, function(err, post){
-		if (err)
-			res.send(err)
 		res.send({
 			success: true
 		})
@@ -139,9 +79,5 @@ app.get('/post/:id', (req, res) => {
 	  res.send(post)
 	})
 })
-const port = process.env.PORT || 8082
-app.listen(port, ()=>{
-  console.log(`API listening on port ${port}`);
-});
-//app.listen(process.env.PORT || 8081)
->>>>>>> 573250f1b5048d92c848a02f3b24dc105c5a3ab3
+
+app.listen(process.env.PORT || 8082)
