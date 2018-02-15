@@ -8,8 +8,11 @@
 
 <script>
 
+<<<<<<< HEAD
 import Navigate from '@/components/navigation'
 
+=======
+>>>>>>> 573250f1b5048d92c848a02f3b24dc105c5a3ab3
 export default {
   name: 'App',
   components: {

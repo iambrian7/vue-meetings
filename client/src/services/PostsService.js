@@ -6,6 +6,10 @@ export default {
   },
 
   addPost (params) {
+<<<<<<< HEAD
+=======
+    console.log("server: addPost" + params)
+>>>>>>> 573250f1b5048d92c848a02f3b24dc105c5a3ab3
     return Api().post('add_post', params)
   },
 
