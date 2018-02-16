@@ -3,6 +3,10 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 
+
+var meetings = require('../routes/meetings');
+
+
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
@@ -10,6 +14,12 @@ app.use(cors())
 
 const mongodb_conn_module = require('./mongodbConnModule');
 var db = mongodb_conn_module.connect();
+
+
+app.use('/meetings', meetings);
+
+
+
 
 var Post = require("../models/post");
 

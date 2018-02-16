@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Posts from '@/components/Posts'
 import addpost from '@/components/AddPost'
 import editpost from '@/components/EditPost'
+import Meetings from '@/components/meetings'
 
 Vue.use(Router)
 
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'Posts',
       component: Posts
+    },
+    {
+      path: '/meetings',
+      name: 'Meetings',
+      component: Meetings
     },
     {
       path: '/posts/add',
