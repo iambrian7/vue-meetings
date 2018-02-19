@@ -64,21 +64,26 @@ router.get('/api/list', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
  // res.send("get meetings...............")
- 
-  var miles = req.query.miles;
-  var lat = req.query.lat;
-  var lng = req.query.lng;
-  if (miles == undefined) {
-    console.log(" request with zero miles..........................")
-    console.log("redirecting to root")
-    res.redirect('/');
-    return;
-  }
-  if (lat == 0){
+
+  var miles = req.query.miles ? req.query.miles : 5;
+  var lat = req.query.lat ? req.query.lat : 44.9666072;
+  var lng = req.query.lng ? req.query.lng : -93.2409158;
+  console.log(`Getting root meetings: miles= ${miles} lat= ${lat} lng= ${lng}`)
+
+
+  // if (miles == undefined) {
+  //   console.log(" request with zero miles..........................")
+  //   console.log("redirecting to root")
+  //   res.redirect('/');
+  //   return;
+  // }
+  if ( (lat == undefined) || (lat == 0)){
     // set default coordinates
+    if (miles == undefined) 
+      miles = 5;
      lng = -93.2409158;//req.query.longitude;
      lat = 44.9666072;//req.query.latitude;
-     console.log("got default lat lng = " + lat + ':' + lng)
+     console.log(`Getting root meetings: miles= ${miles} lat= ${lat} lng= ${lng}`)
   } else {
     console.log("got request lat lng = " + lat + ':' + lng)
   }

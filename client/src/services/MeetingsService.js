@@ -1,23 +1,23 @@
 import Api from '@/services/Api'
 
 export default {
-  fetchPosts () {
+  fetchMeetings () {
     return Api().get('meetings')
   },
 
-  addPost (params) {
+  addMeeting (params) {
     return Api().post('add_meeting', params)
   },
 
-  updatePost (params) {
+  updateMeeting (params) {
     return Api().put('meeting/' + params.id, params)
   },
 
-  getPost (params) {
+  getMeeting (params) {
     return Api().get('meeting/' + params.id)
   },
 
-  deletePost (id) {
+  deleteMeeting (id) {
     return Api().delete('meeting/' + id)
   }
 }

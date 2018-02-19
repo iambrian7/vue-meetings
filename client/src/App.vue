@@ -2,12 +2,13 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
      <aalinks-nav></aalinks-nav>
+     <button @click="getMeetings()">GetMeetings</button>
     <router-view/>
   </div>
 </template>
 
 <script>
-
+import MeetingsService from '@/services/MeetingsService'
 import Navigate from '@/components/navigation'
 
 export default {
