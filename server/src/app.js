@@ -89,5 +89,8 @@ app.get('/post/:id', (req, res) => {
 	  res.send(post)
 	})
 })
+var port = process.env.PORT || 8082
 
-app.listen(process.env.PORT || 8082)
+app.listen(port, function(){
+	console.log("connected on port: " + port)
+})

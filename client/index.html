@@ -5,8 +5,62 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>client</title>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAoI7av5H3SWALDdJcwDBcRFS0-SAhP5vo"></script>
+    <link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+    <style>
+      body, document { height: 100vh;}
+      #bg {
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        z-index: -1;
+        /* Preserve aspet ratio */
+        min-width: 100%;
+        /* min-height: 100%; */
+      }
+      .parallax {
+          /* The image used */
+          background-image: url("/static/NorthCarolinaSunrise.jpg");
+
+          /* Set a specific height */
+          /* min-height: 100vh;  */
+
+          /* Create the parallax scrolling effect */
+          background-attachment: fixed;
+          /* background-position: center; */
+          background-repeat: no-repeat;
+          background-size: cover;
+          }
+          .image-title1 {
+              font-size: 35px;
+              position: absolute;
+              top: 500px;
+              left: 150px;
+              width: 100%;
+              max-width: 600px;
+              border: 1px solid white;
+          }
+          .image-title2 {
+              font-size:35px;
+              position: absolute;
+              top: 620px;
+              left: 252px;
+              width: 100%;
+              max-width: 600px;
+              border: 1px solid white;
+          }
+
+          .image-title1,.image-title2{
+              font: 400 130px/0.8 'Great Vibes', Helvetica, sans-serif;
+              font-size: 75px;
+              color: #fff;
+              text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
+          }
+
+    </style>
   </head>
-  <body>
+  <body class="parallax">
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>

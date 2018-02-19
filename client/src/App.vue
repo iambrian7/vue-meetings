@@ -3,6 +3,7 @@
     <!-- <img src="./assets/logo.png"> -->
      <aalinks-nav></aalinks-nav>
      <button @click="getMeetings()">GetMeetings</button>
+     <p>Meetings found: {{meetings.length}}</p>
     <router-view/>
   </div>
 </template>
@@ -18,15 +19,19 @@ export default {
   },
   data() {
     return {
-      meetings: null
+      meetings: []
     }
   },
   methods: {
      async getMeetings () {
       console.log("fetching meetings.......")
       const response = await MeetingsService.fetchMeetings()
-      this.meetings = response.data.posts
+      this.meetings = response.data
     },
+  },
+  created() {
+    console.log("App.vue created .............")
+    this.getMeetings()
   }
 }
 </script>
