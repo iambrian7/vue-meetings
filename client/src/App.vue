@@ -15,6 +15,18 @@ export default {
   components: {
     "aalinks-nav": Navigate
   },
+  data() {
+    return {
+      meetings: null
+    }
+  },
+  methods: {
+     async getMeetings () {
+      console.log("fetching meetings.......")
+      const response = await MeetingsService.fetchMeetings()
+      this.meetings = response.data.posts
+    },
+  }
 }
 </script>
 
