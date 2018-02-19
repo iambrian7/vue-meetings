@@ -73,14 +73,14 @@ export default {
   },
   created: function(){
    // debugger;
-   console.log("meetinglist created: meetings len= " + this.meetings.length)
+ //  console.log("meetinglist created: meetings len= " + this.meetings.length)
     self = this;
     this.meetings.forEach(function(m){
       self.meetingObj[m._id] = m;  
       })
   },
     updated: function(){
-      console.log("meetinglist updated")
+   //   console.log("meetinglist updated")
    // debugger;
     self = this;
     this.meetings.forEach(function(m){
