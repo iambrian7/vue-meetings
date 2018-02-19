@@ -138,8 +138,8 @@ export default {
       mileMax: 2,
       day: new Date().getDay(),
       selected: '',
-   //    lat: 44.9169,
-    //  lng: -93.4450,
+      lat: 44.9169,
+      lng: -93.4450,
       home: {lat:44.9270729,lng:-93.4479148},
       isActive: true,
       allMeetings: false,
@@ -149,6 +149,8 @@ export default {
   },
   methods: {
     mileLimit: function(m){
+      console.log("mileLimit-lat:" + this.lat + " lng:" + this.lng)
+      console.log("meeting  -lat:" + m.loc.coordinates[1] + " lng:" + m.loc.coordinates[0])
       return (this.mileMax > this.distance(this.lat,this.lng,m.loc.coordinates[1],m.loc.coordinates[0])) 
     },
     daycut: function(m){
@@ -168,6 +170,7 @@ export default {
       dist = dist * 60 * 1.1515;
       if (unit === 'K') { dist = dist * 1.609344 };
       if (unit === 'N') { dist = dist * 0.8684 };
+     // console.log("dist = " + dist)
       return dist;
     },
     geolocateCenter(){
@@ -211,13 +214,19 @@ export default {
   computed: {
     filteredMeetings: function(){
     var self = this;
-
+//debugger
+console.log("filteredMeetings: limit:" + this.mileMax + " lat:" + this.lat + 
+" lng:" + this.lng)
        var newMeetings = this.meetings.filter(function(m){
            return ((self.mileLimit(m)) &&
                     (self.day == 7 || self.day == m.day) &&
                    (!self.picked || m.types.includes(self.picked))
                     )
         })
+        if (newMeetings.length == 0) {
+          console.log("no meetings filtered:")
+         
+        }
       newMeetings.sort(function (a, b) {
         // ******************** first sort days
         var nameA = a.day;

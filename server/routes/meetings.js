@@ -65,7 +65,7 @@ router.get('/api/list', function(req, res, next) {
 router.get('/', function(req, res, next) {
  // res.send("get meetings...............")
 
-  var miles = req.query.miles ? req.query.miles : 5;
+  var miles = req.query.miles ? req.query.miles : 50;
   var lat = req.query.lat ? req.query.lat : 44.9666072;
   var lng = req.query.lng ? req.query.lng : -93.2409158;
   console.log(`Getting root meetings: miles= ${miles} lat= ${lat} lng= ${lng}`)

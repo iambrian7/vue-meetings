@@ -2,9 +2,9 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
      <aalinks-nav></aalinks-nav>
-     <button @click="getMeetings()">GetMeetings</button>
-     <p>Meetings found: {{meetings.length}}</p>
-    <router-view/>
+     <keep-alive include="addmeeting">
+      <router-view v-bind:meetings='meetings' v-bind:lat='lat' v-bind:lng='lng'></router-view>
+   </keep-alive>
   </div>
 </template>
 
@@ -19,7 +19,12 @@ export default {
   },
   data() {
     return {
-      meetings: []
+      lat: 44.9169,
+      lng: -93.4450,
+      meetings: [],
+      meeting_list: {},
+      meeting_list_index: [],
+      locationFound: false
     }
   },
   methods: {

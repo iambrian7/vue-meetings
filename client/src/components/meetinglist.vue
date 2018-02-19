@@ -73,7 +73,7 @@ export default {
   },
   created: function(){
    // debugger;
-   console.log("meetinglist created")
+   console.log("meetinglist created: meetings len= " + this.meetings.length)
     self = this;
     this.meetings.forEach(function(m){
       self.meetingObj[m._id] = m;  
