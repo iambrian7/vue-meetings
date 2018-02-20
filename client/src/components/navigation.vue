@@ -1,20 +1,14 @@
 <template>
   <div class="navigation">
       <nav>
-          <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/meetings">Meetings</router-link></li>
-           <li><router-link to="/addmeeting">New Meetings</router-link></li>
-            <li><router-link to="/meetinglist">Meeting List</router-link></li>
-             <li><router-link to="/posts">Posts</router-link></li>
-          </ul>
-          </nav>
-    
-    <nav>
-    <ul>
-   
-    </ul>
-    </nav>
+        <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/meetings">Meetings</router-link></li>
+          <li><router-link to="/addmeeting">New Meetings</router-link></li>
+          <li><router-link to="/meetinglist">Meeting List</router-link></li>
+            <li><router-link to="/posts">Posts</router-link></li>
+        </ul>
+      </nav>
     </div>
 </template>
 
@@ -61,6 +55,7 @@ nav {
 
 nav ul {
   display: flex;
+  justify-content: flex-end;
 }
 nav ul:first-child {
   flex: 3;
