@@ -33,21 +33,15 @@ export default {
     }
   },
   methods: {
-     async getMeetings () {
-      console.log("fetching meetings.......")
-      const response = await MeetingsService.fetchMeetings()
-      this.meetings = response.data
-    },
+    //  async getMeetings () {
+    //   console.log("fetching meetings.......")
+    //   const response = await MeetingsService.fetchMeetings()
+    //   this.meetings = response.data
+    // },
   },
   created() {
     console.log("App.vue created .............")
-    //this.getMeetings()
-  //  debugger
- // var self = this;
- // self.meetings = 
- let m = this.$helpers.getSomeMeetings()
-
-    console.log("after call to helpers")
+  this.$helpers.getSomeMeetings(this)
   }
 }
 </script>
