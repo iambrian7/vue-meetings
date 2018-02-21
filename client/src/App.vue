@@ -12,6 +12,7 @@
 import MeetingsService from '@/services/MeetingsService'
 import Navigate from '@/components/navigation'
 
+
 export default {
   name: 'App',
   components: {
@@ -19,6 +20,10 @@ export default {
   },
   data() {
     return {
+      centerLocation: {
+        lat: 44.9169,
+        lng: -93.4450,
+      },
       lat: 44.9169,
       lng: -93.4450,
       meetings: [],
@@ -36,7 +41,13 @@ export default {
   },
   created() {
     console.log("App.vue created .............")
-    this.getMeetings()
+    //this.getMeetings()
+  //  debugger
+ // var self = this;
+ // self.meetings = 
+ let m = this.$helpers.getSomeMeetings()
+
+    console.log("after call to helpers")
   }
 }
 </script>
