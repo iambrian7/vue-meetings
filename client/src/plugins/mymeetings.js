@@ -11,7 +11,13 @@ import MeetingsService from '@/services/MeetingsService'
           });
         },
        async getSomeMeetings(self){
-            const response = await MeetingsService.fetchMeetings()
+            const response = await MeetingsService.fetchMeetings(
+                {
+                    miles: self.miles,
+                    lat: self.lat,
+                    lng: self.lng
+                }
+            )
             self.meetings = response.data
         }
       };

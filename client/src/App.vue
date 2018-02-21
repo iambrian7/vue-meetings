@@ -24,6 +24,7 @@ export default {
         lat: 44.9169,
         lng: -93.4450,
       },
+      miles: 50,
       lat: 44.9169,
       lng: -93.4450,
       meetings: [],
