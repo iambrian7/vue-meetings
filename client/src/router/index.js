@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import Posts from '@/components/Posts'
-import addpost from '@/components/AddPost'
-import editpost from '@/components/EditPost'
+// import Posts from '@/components/Posts'
+// import addpost from '@/components/AddPost'
+// import editpost from '@/components/EditPost'
 import Meetings from '@/components/meetings'
+import CompareMeetings from '@/components/CompareMeetings'
 
 Vue.use(Router)
 
@@ -22,14 +23,19 @@ export default new Router({
       component: Meetings
     },
     {
-      path: '/posts/add',
-      component: addpost,
-      name: 'addpost'
+      path: '/compare-meetings',
+      name: 'compare-meetings',
+      component: CompareMeetings
     },
-    {
-      path: '/posts/:id/edit',
-      component: editpost,
-      name: 'editpost'
-    }
+    // {
+    //   path: '/posts/add',
+    //   component: addpost,
+    //   name: 'addpost'
+    // },
+    // {
+    //   path: '/posts/:id/edit',
+    //   component: editpost,
+    //   name: 'editpost'
+    // }
   ]
 })

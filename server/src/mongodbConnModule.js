@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+//const database = "products"
 const database = "vue-meetings"
 module.exports.connect = function() {
 	mongoose.connect('mongodb://localhost:27017/'+database);

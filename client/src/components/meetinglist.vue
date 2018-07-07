@@ -6,8 +6,9 @@
       <li
         v-for="(a, index) in meetings" 
         class='meeting-list-item' 
-        v-bind:data-key='a.name'
-        > {{ a.name }}
+        v-bind:data-key='a.name' :key='slug'
+        > <h3> {{ a.name }}</h3>
+        <p>{{a.time_formatted}} {{a.day | dayname}}</p>
           </li>
     </ul>
   <!-- </div> end container -->
@@ -51,7 +52,7 @@ export default {
         }
          
       })
-     debugger
+   //  debugger
       this.meetingIndex = indx;
       return this.meetingIndex;
     }
@@ -73,7 +74,7 @@ export default {
   },
   created: function(){
    // debugger;
- //  console.log("meetinglist created: meetings len= " + this.meetings.length)
+  console.log("meetinglist created: meetings len= " + this.meetings.length)
     self = this;
     this.meetings.forEach(function(m){
       self.meetingObj[m._id] = m;  
@@ -99,8 +100,22 @@ export default {
     height: 100vh;
 }
 .meeting-header {background: #ccc;}
-p {background: #ccc;}
 .meetinglist ul {padding: 0;}
-.meeting-list-item { padding: 5px; border: 1px solid grey; margin: 5px;
- background: #fff; text-align: left;  list-style: none;}
+.meeting-list-item { 
+  padding: 5px; 
+  border: 1px solid grey; 
+  margin: 5px;
+  background: #fff; 
+  text-align: left;
+  list-style: none;
+  font-size: 1.2em;
+  }
+  .meeting-list-item h3{
+    font-size: 0.8em;
+  }
+  .meeting-list-item p{
+    font-size: 0.6em;
+   text-align: right;
+   font-weight: 800;
+  }
 </style>

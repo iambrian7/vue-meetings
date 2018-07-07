@@ -1,5 +1,7 @@
 import MeetingsService from '@/services/MeetingsService'
-
+ import mplsMeetings from '@/services/mplsMeetings'
+//import MPLS from '@/data/mplsAll04082018.json'
+//import * as MPLS from '/modules/my-module.js';
   export default {
     install: (Vue) => {
       Vue.prototype.$helpers = {
@@ -19,6 +21,11 @@ import MeetingsService from '@/services/MeetingsService'
                 }
             )
             self.meetings = response.data
+        },
+        getMpls(self){
+         // debugger
+         // console.log("MPLS = " + JSON.stringify(mplsMeetings, null, 3))
+          self.mpls = mplsMeetings //[{name: "hello mpls"}]
         }
       };
     }

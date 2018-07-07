@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Standard Minnesota AA Meetings</title>
+  <style>
+    html, body {
+      height: 100%;
+    line-height: 2em;
+    font-family: Helvetica Neue, 'Helvetica', 'Arial'
+    }
+    header {
+      font-size: 0.4em;
+      background: #ccc;
+    }
+    .container{
+      display: flex;
+      justify-content: space-around;
+    }
+    .aa-location{
+      font-size: 0.6em;
+      color: black;
+      padding: 5px;
+      border: 1px solid lightblue;
+    }
+
+</style>
+<body>
+<div id="app">
+    <!-- <vue-nav is-active='two'></vue-nav> -->
+<header>
+  <h1>What is your focus today? </h1>
+  <h2>{{today.toLocaleString()}}</h2>
+  <h3>Start and End Date: 4/13/2018 </h3>
+  <p>The plan for today: Standardize All Minnesota (aaminnesota.org) meetings</p>
+  <button @click="chkMeetings">Check Minnetonka Meetings</button>
+</header>
+<div class="container">
+
+  <div class="mpls-meetings">
+    Locations found: {{ formattedMeetings.length}}
+    <div class="aa-location" v-for="m in formattedMeetings">
+      {{ m.name}} -- {{ m.formatted_address.split(',')[1]}}
+    </div>
+  </div>
+  <div class="minnesota-locations">
+    Locations found: {{ minnesotaMeetings }}
+    <!-- Locations found: {{ Object.keys(locations).length}} -->
+    <input type="text" v-model="inputkey"> <button @click="getMinnesotaFilter">Search</button>
+    <div class="aa-location" v-for="loc in filteredMinnesota">
+      <!-- <pre>
+        Location: ************* {{loc[1].formatted_address}}
+      </pre> -->
+      {{ loc.formatted_address}} -- Meetings: {{ loc.meetings.length}} at: {{ loc.formatted_address.split(',')[1]}}
+      <!-- {{ loc[1].formatted_address}} -- Meetings: {{ loc[1].meetings.length}} at: {{ loc[1].formatted_address.split(',')[1]}} -->
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; {{today.getFullYear()}} Brian K Carlson
+</footer>
+
+
+
+
+
+  <!-- end of app -->
+  <!-- end of app -->
+  <!-- end of app -->
+</div>
+<!-- component template -->
+
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<!-- <script src="../../../js/httpVueLoader.js"></script> -->
+<script src="all_minnesota_locations.js"></script>
+<script src="mplsmeetings.js"></script>
+<script>
+     
+  const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+  const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+  "Saturday"];
+
+var app = new Vue({
+  el: '#app',
+  // components: {
+  //   'vue-nav': httpVueLoader('../components/nav.vue'),
+  // },
+  data: {
+    title: "Minnesota AA Meetings",
+    today: new Date(),
+    active: false,
+    locations: locations,
+    filteredLocatons: [],
+    mpls: mplsMeetings,
+    formattedMeetings: [],
+    inputKey: 'Minnetonka',
+    filterkey: 'Minnetonka',
+    minnesotaMeetings: 0
+},
+updated() {
+  console.log("updated.......................")
+},
+methods: {
+  getMinnesotaFilter: function(){
+    this.filterkey = this.inputkey
+  },
+  chkMeetings: function(){
+    var mtka = this.mpls.filter(m => {
+     // console.log("m = " + m)
+      return m.formatted_address.indexOf("Minnetonka") > -1
+    })
+    this.formattedMeetings = mtka
+  },
+  daysInMonth: function (month, year) {
+  return new Date(year, month, 0).getDate();
+  },
+  startTimer: function(){
+    var self = this;
+    setInterval(function(){
+      self.today = new Date()
+    },1000)
+  },
+  monthdayname: function(value){
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var valueName = this.today.getDate() - value;
+    var result = new Date(this.today)
+    result.setDate(result.getDate() + valueName)
+    return days[result.getDay()].substr(0,1)
+        
+  },
+  
+},
+computed: {
+  filteredMinnesota: function(){
+    var data = Object.values(this.locations)
+    // var data = Object.entries(this.locations)
+    var filterkey = this.filterkey && this.filterkey.toLowerCase()
+    if (filterkey.length > 0) {
+      data = data.filter(function (row) {
+        var d = row//[1]
+        return d.formatted_address.toLowerCase().indexOf(filterkey) > -1
+        // return Object.keys(d).some(function (key) {
+        //   return String(d[key]).toLowerCase().indexOf(filterkey) > -1
+       // })
+      })
+      console.log(JSON.stringify(data,null,4))
+    }
+    this.minnesotaMeetings = data.reduce(function(a,b){
+      return a + b.meetings.length
+    },0)
+    return data
+  },
+},
+filters: {
+  
+monthname: function (value) {
+  if (!value) return ''
+  // value = value.toString()
+  return MONTH_NAMES[value-1 ].substr(0,3)
+},
+dayname: function(value){
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var valueName = app.$data.today.getDate() - value;
+  var result = new Date(app.$data.today)
+  result.setDate(result.getDate() + valueName)
+  return days[result.getDay()].substr(0,1)
+}
+},
+mounted(){
+  console.log("mounted........")
+ // this.startTimer();
+}
+  })
+</script>
+</body>
+</html>
